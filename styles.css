@@ -19,7 +19,7 @@ body {
     font-size: 2rem;
     font-weight: 800;
     color: #31b2cc;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== HEADER SECTION ===== */
@@ -29,7 +29,8 @@ body {
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1100;
+    /* must be > overlay (1050) so the drawer inside stays clickable */
     background: #ffffff;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
@@ -86,49 +87,123 @@ body {
     background: #31b2cc;
 }
 
+/* ===== HAMBURGER BUTTON ===== */
 .nav-toggle {
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
     background: transparent;
     border: 0;
-    padding: 8px;
+    padding: 0;
     cursor: pointer;
+    z-index: 1100;
+    flex-shrink: 0;
 }
 
 .nav-toggle .bar {
     display: block;
-    width: 22px;
-    height: 2px;
+    width: 28px;
+    height: 3px;
     background: #1a1a1a;
-    margin: 5px 0;
-    transition: transform 0.2s ease;
+    border-radius: 3px;
+    transition: transform 0.35s ease, opacity 0.35s ease, background 0.3s ease;
 }
 
+/* Animated X when open */
+.nav-toggle.is-open .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.nav-toggle.is-open .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle.is-open .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ===== RIGHT-SIDE SLIDING DRAWER (mobile) ===== */
 @media (max-width: 880px) {
     .nav-toggle {
-        display: inline-block;
+        display: flex;
     }
 
-    .nav {
-        position: absolute;
-        right: 20px;
-        top: 80px;
+    /* The nav becomes a full-height drawer sliding in from the right */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        /* starts off-screen */
+        width: 260px;
+        height: 100vh;
         background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 10px;
-        padding: 10px 6px;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 1060;
+        /* ABOVE the overlay (1050) */
+        padding-top: 90px;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        pointer-events: auto;
     }
 
-    .nav ul {
+    /* When JS adds .nav-open the drawer slides in */
+    .main-nav.nav-open {
+        right: 0;
+    }
+
+    .main-nav ul {
         flex-direction: column;
         align-items: flex-start;
-        gap: 6px;
+        gap: 0;
+        padding: 0 0 2rem 0;
     }
 
-    .nav[hidden] {
-        display: none;
+    .main-nav ul li {
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .main-nav ul li:first-child {
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .main-nav a {
+        display: block;
+        padding: 1rem 1.5rem;
+        font-size: 1.05rem;
+        color: #1a1a1a;
+        font-weight: 600;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus {
+        background: #f0fafd;
+        color: #31b2cc;
     }
 }
+
+/* ===== OVERLAY behind the drawer ===== */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    /* below drawer (1060) but above page */
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    /* NO backdrop-filter – it would blur the drawer too */
+}
+
+.nav-overlay.overlay-active {
+    display: block;
+    opacity: 1;
+}
+
 
 /* ===== HERO SECTION ===== */
 .hero {
@@ -162,6 +237,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -225,13 +301,23 @@ body {
 }
 
 @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 @keyframes scroll-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 /* ===== ADS SECTION (ACHIEVEMENTS) ===== */
@@ -305,7 +391,7 @@ body {
     background: white;
     border-radius: 24px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.04);
+        0 2px 8px rgba(0, 0, 0, 0.04);
     padding: 0;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
@@ -339,7 +425,7 @@ body {
 .ad-card:hover {
     transform: translateY(-20px) rotateX(5deg);
     box-shadow: 0 30px 60px rgba(49, 178, 204, 0.2),
-    0 0 0 1px rgba(49, 178, 204, 0.15);
+        0 0 0 1px rgba(49, 178, 204, 0.15);
 }
 
 .ad-card::after {
@@ -367,7 +453,7 @@ body {
     border-radius: 24px 24px 0 0;
     display: block;
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1),
-    filter 0.6s ease;
+        filter 0.6s ease;
     position: relative;
     z-index: 1;
 }
@@ -421,7 +507,7 @@ body {
     background: #fff;
     border-radius: 15px;
     padding: 1rem;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
     opacity: 0;
     transform: translateX(0);
@@ -523,13 +609,13 @@ body {
     padding: 0;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(49, 178, 204, 0.08),
-    0 1px 3px rgba(0, 0, 0, 0.05);
+        0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .member-card:hover {
     transform: translateY(-15px) scale(1.02);
     box-shadow: 0 25px 50px rgba(49, 178, 204, 0.15),
-    0 0 0 1px rgba(49, 178, 204, 0.1);
+        0 0 0 1px rgba(49, 178, 204, 0.1);
 }
 
 .member-card::before {
@@ -700,7 +786,7 @@ body {
     border-radius: 20px;
     max-width: 1100px;
     margin: 2rem auto;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
@@ -722,7 +808,7 @@ body {
     background: #ffffff;
     border-radius: 18px;
     padding: 1rem 0.8rem;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
     overflow: hidden;
@@ -731,7 +817,7 @@ body {
 
 .question-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
     background: #f9faff;
 }
 
@@ -836,7 +922,7 @@ body {
 
 .slider-item:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .slider-item img {
@@ -853,7 +939,7 @@ body {
     background: #31b2cc;
     padding: 15px;
     border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
     z-index: 10000;
     text-align: center;
     width: 250px;
@@ -1167,12 +1253,14 @@ body {
         flex-wrap: wrap;
     }
 }
+
 /* =========================================
    1. حركة الـ Scroll Reveal
    ========================================= */
 .reveal {
     opacity: 0;
-    transform: translateY(40px); /* يبدأ من الأسفل قليلاً */
+    transform: translateY(40px);
+    /* يبدأ من الأسفل قليلاً */
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     visibility: hidden;
 }
@@ -1184,10 +1272,10 @@ body {
 }
 
 /* =========================================
-   2. تعديلات الـ Responsive (لكل الأجهزة)
+   RESPONSIVE DESIGN - ALL BREAKPOINTS
    ========================================= */
 
-/* للشاشات المتوسطة (Tablets) */
+/* ── Tablet (≤1024px) ─────────────────── */
 @media (max-width: 1024px) {
     .ads-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1195,56 +1283,136 @@ body {
     }
 }
 
-/* للشاشات الصغيرة (Mobile Phones) */
+/* ── Mobile (≤768px) ──────────────────── */
 @media (max-width: 768px) {
     body {
-        padding-top: 80px; /* تقليل المساحة العلوية في الموبايل */
+        padding-top: 80px;
     }
 
-    .section-title {
-        font-size: 1.8rem !important;
-        text-align: center;
-    }
-
-    /* شبكة الصور العلوية */
+    /* Scrolling image strip */
     .images img {
-        width: 150px;
-        height: 110px;
+        width: 130px;
+        height: 95px;
     }
 
-    /* قسم الإنجازات */
+    /* Achievements */
+    .ads-section {
+        padding: 3rem 0;
+    }
+
+    .ads-section .section-title {
+        font-size: 1.8rem;
+    }
+
     .ads-grid {
-        grid-template-columns: 1fr; /* عنصر واحد في كل صف */
+        grid-template-columns: 1fr;
         padding: 0 15px;
+        gap: 1.5rem;
+        margin-top: 2rem;
     }
 
-    /* قسم الفريق */
+    .ad-main-image {
+        height: 200px;
+    }
+
+    /* Comments */
+    .comments-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .comments-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Team */
     .team-track {
         display: flex;
-        overflow-x: auto; /* السماح بالسحب الجانبي في الموبايل */
+        overflow-x: auto;
         gap: 15px;
         padding-bottom: 20px;
     }
 
     .team-member {
-        min-width: 200px; /* حجم مناسب لكرت العضو في الموبايل */
+        min-width: 180px;
     }
 
-    /* قسم الأسئلة */
+    /* FAQ */
     .questions-grid {
         grid-template-columns: 1fr;
     }
 
-    /* الهيدر والمنيو */
-    .nav {
-        width: 200px;
-        right: 10px;
+    .section-title {
+        font-size: 1.6rem !important;
+        text-align: center;
+    }
+
+    /* Footer */
+    .site-footer .container {
+        padding: 40px 20px;
     }
 }
 
-/* تحسين حركة الصور في الموبايل لتقليل استهلاك البطارية */
+/* ── Small Mobile (≤480px) ────────────── */
 @media (max-width: 480px) {
+    body {
+        padding-top: 72px;
+    }
+
+    .site-header .logo img {
+        height: 52px;
+    }
+
+    .images img {
+        width: 100px;
+        height: 75px;
+    }
+
+    /* Slow down the scrolling strip to save battery */
     .track {
         animation-duration: 20s !important;
+    }
+
+    .ads-grid {
+        padding: 0 10px;
+        gap: 1rem;
+    }
+
+    .ad-main-image {
+        height: 180px;
+    }
+
+    .member-card {
+        width: 150px;
+    }
+
+    .member-card img {
+        height: 160px;
+    }
+
+    .association-section {
+        margin: 1rem 10px;
+        padding: 1rem 0.75rem;
+    }
+
+    .bottom-slider {
+        padding: 1rem 0;
+    }
+
+    .site-footer .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-meta {
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-meta .meta-links {
+        justify-content: center;
+    }
+
+    .footer-brand {
+        align-items: center;
     }
 }

@@ -1227,3 +1227,96 @@ body {
     font-size: 1.2rem;
 }
 
+/* ============================================================
+   MOBILE NAV DRAWER - body padding corrections
+   (drawer styles live in styles.css which is also loaded here)
+   ============================================================ */
+@media (max-width: 880px) {
+    body {
+        padding-top: 80px;
+    }
+
+    .header-banner {
+        margin-top: -80px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .header-banner {
+        margin-top: -70px;
+        height: 220px;
+    }
+
+    .banner-content h1 {
+        font-size: 2rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+    }
+
+    .video-section {
+        padding: 40px 0;
+    }
+
+    .video-content h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ============================================================
+   PROFESSIONAL POLISH TOUCHES
+   ============================================================ */
+
+/* Gallery cards - smoother hover curve */
+.gallery-item {
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(49, 178, 204, 0.18);
+}
+
+/* Consistent card transition */
+.card-inner,
+.dev-card {
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Image container subtle inner glow */
+.image-container {
+    box-shadow: 0 4px 16px rgba(49, 178, 204, 0.10),
+        inset 0 0 0 3px rgba(49, 178, 204, 0.06);
+}
+
+/* Modal - richer shadow */
+.modal-content {
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(49, 178, 204, 0.08);
+}
+
+/* Nav carousel buttons */
+.nav-btn,
+.dev-prev-btn,
+.dev-next-btn {
+    box-shadow: 0 4px 14px rgba(49, 178, 204, 0.22);
+}
+
+/* Refined subtitle colour */
+.section-subtitle {
+    color: #555;
+    letter-spacing: 0.1px;
+}
+
+/* Section headings tighter tracking */
+.section-header h2,
+.gallery h2 {
+    letter-spacing: -0.4px;
+}

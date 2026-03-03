@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="images/AIN/ain.png" type="image/x-icon">
@@ -8,31 +9,35 @@
   <link rel="stylesheet" href="/assets/css/about.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- External CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
-<!-- Header -->
-<header class="site-header">
-  <div class="container">
-    <a href="/" class="logo" aria-label="Arab Innovation Network home">
-      <img src="/components/AINLogo-2.png" alt="AIN" />
-    </a>
-    <nav class="main-nav nav" id="site-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="/events.html">Events</a></li>
-        <li><a href="/contactus.html">Contact Us</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="true">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </div>
-</header>
-  
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/index.html" class="logo" aria-label="Arab Innovation Network home">
+        <img src="/components/AINLogo-2.png" alt="AIN" />
+      </a>
+      <nav class="main-nav nav" id="site-nav">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/contactus.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
   <!-- Header Banner -->
   <section class="header-banner">
     <div class="banner-content">
@@ -44,43 +49,44 @@
   <div class="container">
     <!-- Video Section (Replaces Hero Section) -->
 
-<section class="video-section fade-in">
-  <div class="video-container">
-    <div class="video-content">
-      <h1>Our Story</h1>
-      <p class="video-intro">
-        The Arab Innovation Network (AIN) is a non-profit youth organization that aims to empower Arab youth to innovate
-        and contribute to finding solutions to the challenges facing our Arab societies.
-      </p>
-    </div>
-    <div class="video-player">
-      <video controls poster="image/video-poster.jpg">
-        <source src="video/ain-story.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay">
-        <div class="play-button">
-          <i class="fas fa-play"></i>
+    <section class="video-section fade-in">
+      <div class="video-container">
+        <div class="video-content">
+          <h1>Our Story</h1>
+          <p class="video-intro">
+            The Arab Innovation Network (AIN) is a non-profit youth organization that aims to empower Arab youth to
+            innovate
+            and contribute to finding solutions to the challenges facing our Arab societies.
+          </p>
+        </div>
+        <div class="video-player">
+          <video controls poster="image/video-poster.jpg">
+            <source src="video/ain-story.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <!-- أضف هذا الجزء - عناصر التحكم -->
+          <div class="video-controls">
+            <button class="control-btn play-pause-btn">
+              <i class="fas fa-play"></i>
+            </button>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <button class="control-btn volume-btn">
+              <i class="fas fa-volume-up"></i>
+            </button>
+            <button class="control-btn fullscreen-btn">
+              <i class="fas fa-expand"></i>
+            </button>
+          </div>
         </div>
       </div>
-      <!-- أضف هذا الجزء - عناصر التحكم -->
-      <div class="video-controls">
-        <button class="control-btn play-pause-btn">
-          <i class="fas fa-play"></i>
-        </button>
-        <div class="progress-bar">
-          <div class="progress"></div>
-        </div>
-        <button class="control-btn volume-btn">
-          <i class="fas fa-volume-up"></i>
-        </button>
-        <button class="control-btn fullscreen-btn">
-          <i class="fas fa-expand"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Eye on Talents -->
     <section class="gallery">
@@ -132,7 +138,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-1" data-member="1">
             <div class="card-inner">
               <div class="card-front">
@@ -145,7 +151,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-2" data-member="2">
             <div class="card-inner">
               <div class="card-front">
@@ -158,7 +164,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-3" data-member="3">
             <div class="card-inner">
               <div class="card-front">
@@ -171,7 +177,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-4" data-member="4">
             <div class="card-inner">
               <div class="card-front">
@@ -184,7 +190,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-5" data-member="5">
             <div class="card-inner">
               <div class="card-front">
@@ -197,7 +203,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-6" data-member="6">
             <div class="card-inner">
               <div class="card-front">
@@ -210,7 +216,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-7" data-member="7">
             <div class="card-inner">
               <div class="card-front">
@@ -223,7 +229,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-8" data-member="8">
             <div class="card-inner">
               <div class="card-front">
@@ -236,7 +242,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-9" data-member="9">
             <div class="card-inner">
               <div class="card-front">
@@ -249,7 +255,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-10" data-member="10">
             <div class="card-inner">
               <div class="card-front">
@@ -262,7 +268,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="team-member" id="member-11" data-member="11">
             <div class="card-inner">
               <div class="card-front">
@@ -290,7 +296,7 @@
         <button class="nav-btn dev-prev-btn">&#10094;</button>
         <div class="dev-team-carousel">
           <!-- Developer 1 - Tala -->
-         <div class="dev-member">
+          <div class="dev-member">
             <div class="dev-card">
               <div class="dev-card-front">
                 <div class="image-container">
@@ -298,13 +304,15 @@
                 </div>
                 <h4>Tala Alhendi</h4>
                 <div class="dev-social-links">
-                  <a href="https://www.linkedin.com/in/tala-alhendi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a>
+                  <a
+                    href="https://www.linkedin.com/in/tala-alhendi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                      class="fab fa-linkedin"></i></a>
                   <a href="#"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Developer 2 - Ghaida -->
           <div class="dev-member">
             <div class="dev-card">
@@ -314,13 +322,15 @@
                 </div>
                 <h4>Ghaida Saify</h4>
                 <div class="dev-social-links">
-                  <a href="https://www.linkedin.com/in/ghayda-saify?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a>
+                  <a
+                    href="https://www.linkedin.com/in/ghayda-saify?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                      class="fab fa-linkedin"></i></a>
                   <a href="#"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Developer 3 - Andreh -->
           <div class="dev-member">
             <div class="dev-card">
@@ -330,13 +340,15 @@
                 </div>
                 <h4>Andreh Khouri</h4>
                 <div class="dev-social-links">
-                  <a href="https://www.linkedin.com/in/andreh-khouri-375965351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a>
+                  <a
+                    href="https://www.linkedin.com/in/andreh-khouri-375965351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                      class="fab fa-linkedin"></i></a>
                   <a href="https://github.com/andrehkhouri333"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Developer 4 - Dana Zaben -->
           <div class="dev-member">
             <div class="dev-card">
@@ -352,7 +364,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Developer 5 - Sadeel -->
           <div class="dev-member">
             <div class="dev-card">
@@ -362,13 +374,15 @@
                 </div>
                 <h4>Sadeel Daraghmeh</h4>
                 <div class="dev-social-links">
-                  <a href="https://www.linkedin.com/in/sadeel-abuhelweh-152788307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a>
+                  <a
+                    href="https://www.linkedin.com/in/sadeel-abuhelweh-152788307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                      class="fab fa-linkedin"></i></a>
                   <a href="#"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Developer 6 - Hamza -->
           <div class="dev-member">
             <div class="dev-card">
@@ -380,6 +394,22 @@
                 <div class="dev-social-links">
                   <a href="https://www.linkedin.com/in/hamza-abdulsalamm"><i class="fab fa-linkedin"></i></a>
                   <a href="https://github.com/HamzaAbdulSalam"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Developer 7 - Mohammad Sweilem -->
+          <div class="dev-member">
+            <div class="dev-card">
+              <div class="dev-card-front">
+                <div class="image-container">
+                  <img src="" alt="Mohammad Sweilem">
+                </div>
+                <h4>Mohammad Sweilem</h4>
+                <div class="dev-social-links">
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
@@ -406,60 +436,63 @@
           </div>
         </div>
       </div>
-<div class="modal-body">
-    <div class="bio-section">
-        <h4>About</h4>
-        <div class="bio-content" id="modalBio">
+      <div class="modal-body">
+        <div class="bio-section">
+          <h4>About</h4>
+          <div class="bio-content" id="modalBio">
             <!-- سيتم إضافة المحتوى هنا عبر JavaScript -->
+          </div>
         </div>
-    </div>
-</div>
+      </div>
     </div>
   </div>
 
   <script src="/assets/js/about.js"></script>
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-brand">
-      <a href="/" class="logo" aria-label="Arab Innovation Network home">
-        <img src="/components/AINLogo-2.png" alt="AIN" />
-      </a>
-      <p>Arab Innovation Network</p>
+  <!-- Shared nav drawer logic (same as index) -->
+  <script src="/script.js"></script>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <a href="/" class="logo" aria-label="Arab Innovation Network home">
+          <img src="/components/AINLogo-2.png" alt="AIN" />
+        </a>
+        <p>Arab Innovation Network</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/contactus.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-meta">
+        <p>
+          <span id="year"></span> © Arab Innovation Network. All rights reserved.
+        </p>
+        <p class="meta-links">
+          <a href="/privacy.html">Privacy</a>
+          <span aria-hidden="true">·</span>
+          <a href="/terms.html">Terms</a>
+        </p>
+      </div>
     </div>
+  </footer>
 
-    <nav class="footer-nav" aria-label="Footer">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="/events.html">Events</a></li>
-        <li><a href="/contactus.html">Contact Us</a></li>
-      </ul>
-    </nav>
-
-    <div class="footer-meta">
-      <p>
-        <span id="year"></span> © Arab Innovation Network. All rights reserved.
-      </p>
-      <p class="meta-links">
-        <a href="/privacy.html">Privacy</a>
-        <span aria-hidden="true">·</span>
-        <a href="/terms.html">Terms</a>
-      </p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Auto-update year in footer
-  (function () {
-    var y = document.getElementById('year');
-    if (y) {
-      y.textContent = new Date().getFullYear();
-    }
-  })();
-</script>
+  <script>
+    // Auto-update year in footer
+    (function () {
+      var y = document.getElementById('year');
+      if (y) {
+        y.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
 
 
 </body>
+
 </html>

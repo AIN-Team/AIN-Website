@@ -1,50 +1,85 @@
-// ===== HEADER NAV TOGGLE =====
+// ===== HEADER NAV TOGGLE – right-side sliding drawer =====
 document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.site-header');
-    if (!header) return;
-
-    const navToggle = header.querySelector('.nav-toggle');
-    const nav = header.querySelector('#site-nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('#site-nav');
+    const overlay = document.getElementById('navOverlay');
 
     if (!navToggle || !nav) return;
 
-    function setOpen(open) {
-        if (open) {
-            nav.removeAttribute('hidden');
-            navToggle.setAttribute('aria-expanded', 'true');
-        } else {
-            nav.setAttribute('hidden', '');
-            navToggle.setAttribute('aria-expanded', 'false');
+    function openDrawer() {
+        nav.classList.add('nav-open');
+        navToggle.classList.add('is-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        if (overlay) {
+            overlay.style.display = 'block';
+            // Force a reflow so the transition fires
+            void overlay.offsetWidth;
+            overlay.classList.add('overlay-active');
         }
+        document.body.style.overflow = 'hidden'; // prevent background scroll
     }
 
-    function initByViewport() {
-        const isSmall = window.matchMedia('(max-width: 880px)').matches;
-        if (isSmall) {
-            setOpen(false);
-        } else {
-            nav.removeAttribute('hidden');
-            navToggle.setAttribute('aria-expanded', 'true');
+    function closeDrawer() {
+        nav.classList.remove('nav-open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (overlay) {
+            overlay.classList.remove('overlay-active');
+            // Wait for fade-out transition before hiding
+            overlay.addEventListener('transitionend', () => {
+                if (!overlay.classList.contains('overlay-active')) {
+                    overlay.style.display = 'none';
+                }
+            }, { once: true });
         }
+        document.body.style.overflow = '';
     }
 
+    function isSmallScreen() {
+        return window.matchMedia('(max-width: 880px)').matches;
+    }
+
+    // Toggle on hamburger click
     navToggle.addEventListener('click', () => {
-        setOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+        if (nav.classList.contains('nav-open')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
     });
 
-    window.addEventListener('resize', initByViewport);
-    initByViewport();
+    // Close on overlay click
+    if (overlay) {
+        overlay.addEventListener('click', closeDrawer);
+    }
 
-    // Mark current page in navigation
-    const currentPath = window.location.pathname;
-    const navLinks = header.querySelectorAll('.nav a');
-    navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname;
-        if (currentPath === linkPath || (currentPath === '/' && linkPath === '/index.html')) {
-            link.classList.add('current-page');
+    // Close drawer when a nav link is clicked (good UX on mobile)
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (isSmallScreen()) closeDrawer();
+        });
+    });
+
+    // On resize to desktop, reset drawer state
+    window.addEventListener('resize', () => {
+        if (!isSmallScreen()) {
+            closeDrawer();
         }
+    });
+
+    // Mark current page link
+    const currentPath = window.location.pathname;
+    nav.querySelectorAll('a').forEach(link => {
+        try {
+            const linkPath = new URL(link.href).pathname;
+            if (currentPath === linkPath || (currentPath === '/' && linkPath === '/index.html')) {
+                link.classList.add('current-page');
+            }
+        } catch (e) { /* ignore invalid hrefs */ }
     });
 });
+
+
 
 // ===== COMMENTS SECTION ANIMATION =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionCards = document.querySelectorAll('.question-card');
 
     questionCards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             this.classList.toggle('active');
         });
     });
@@ -257,7 +292,6 @@ function initScrollReveal() {
 function adjustTeamForMobile() {
     const teamTrack = document.querySelector('.team-track');
     if (window.innerWidth < 768 && teamTrack) {
-        // إضافة تلميح للمستخدم أنه يمكنه السحب جانبياً
         teamTrack.style.cursor = 'grab';
     }
 }
@@ -266,15 +300,4 @@ function adjustTeamForMobile() {
 document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     adjustTeamForMobile();
-
-    // كود الـ Toggle Menu الخاص بك (تأكد من وجوده هنا)
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('#site-nav');
-    if (navToggle && nav) {
-        navToggle.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !expanded);
-            nav.hidden = expanded;
-        });
-    }
 });

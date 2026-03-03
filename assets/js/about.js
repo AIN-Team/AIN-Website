@@ -5,7 +5,7 @@ const fadeInOnScroll = () => {
     fadeElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
-        
+
         if (elementTop < window.innerHeight - elementVisible) {
             element.classList.add('visible');
         }
@@ -21,97 +21,97 @@ window.addEventListener('load', fadeInOnScroll);
 // Video functionality - Complete version with working controls
 const setupVideo = () => {
     const videoPlayer = document.querySelector('.video-player');
-      const video = videoPlayer.querySelector('video');
-      const playButton = videoPlayer.querySelector('.play-button');
-      const videoOverlay = videoPlayer.querySelector('.video-overlay');
-      const playPauseBtn = videoPlayer.querySelector('.play-pause-btn');
-      const progressBar = videoPlayer.querySelector('.progress-bar');
-      const progress = videoPlayer.querySelector('.progress');
-      const volumeBtn = videoPlayer.querySelector('.volume-btn');
-      const fullscreenBtn = videoPlayer.querySelector('.fullscreen-btn');
+    const video = videoPlayer.querySelector('video');
+    const playButton = videoPlayer.querySelector('.play-button');
+    const videoOverlay = videoPlayer.querySelector('.video-overlay');
+    const playPauseBtn = videoPlayer.querySelector('.play-pause-btn');
+    const progressBar = videoPlayer.querySelector('.progress-bar');
+    const progress = videoPlayer.querySelector('.progress');
+    const volumeBtn = videoPlayer.querySelector('.volume-btn');
+    const fullscreenBtn = videoPlayer.querySelector('.fullscreen-btn');
 
-      video.removeAttribute('controls');
+    video.removeAttribute('controls');
 
-      const updateProgress = () => {
+    const updateProgress = () => {
         if (video.duration) {
-          const percent = (video.currentTime / video.duration) * 100;
-          progress.style.width = `${percent}%`;
+            const percent = (video.currentTime / video.duration) * 100;
+            progress.style.width = `${percent}%`;
         }
-      };
+    };
 
-      const updatePlayPauseIcon = () => {
+    const updatePlayPauseIcon = () => {
         const icon = playPauseBtn.querySelector('i');
         icon.className = video.paused ? 'fas fa-play' : 'fas fa-pause';
-      };
+    };
 
-      const updateVolumeIcon = () => {
+    const updateVolumeIcon = () => {
         const icon = volumeBtn.querySelector('i');
         if (video.muted || video.volume === 0) {
-          icon.className = 'fas fa-volume-mute';
+            icon.className = 'fas fa-volume-mute';
         } else if (video.volume < 0.5) {
-          icon.className = 'fas fa-volume-down';
+            icon.className = 'fas fa-volume-down';
         } else {
-          icon.className = 'fas fa-volume-up';
+            icon.className = 'fas fa-volume-up';
         }
-      };
+    };
 
-      const playVideo = () => {
+    const playVideo = () => {
         video.play();
         videoOverlay.classList.add('hidden');
         videoPlayer.classList.add('playing');
         updatePlayPauseIcon();
-      };
+    };
 
-      const pauseVideo = () => {
+    const pauseVideo = () => {
         video.pause();
         videoOverlay.classList.remove('hidden');
         videoPlayer.classList.remove('playing');
         updatePlayPauseIcon();
-      };
+    };
 
-      const togglePlayPause = () => {
+    const togglePlayPause = () => {
         if (video.paused) playVideo(); else pauseVideo();
-      };
+    };
 
-      const toggleVolume = () => {
+    const toggleVolume = () => {
         video.muted = !video.muted;
         updateVolumeIcon();
-      };
+    };
 
-      const toggleFullscreen = () => {
+    const toggleFullscreen = () => {
         if (!document.fullscreenElement) {
-          videoPlayer.requestFullscreen();
+            videoPlayer.requestFullscreen();
         } else {
-          document.exitFullscreen();
+            document.exitFullscreen();
         }
-      };
+    };
 
-      const seekVideo = (e) => {
+    const seekVideo = (e) => {
         const rect = progressBar.getBoundingClientRect();
         const percent = (e.clientX - rect.left) / rect.width;
         video.currentTime = percent * video.duration;
-      };
-
-      // Events
-      playButton.addEventListener('click', playVideo);
-      videoOverlay.addEventListener('click', playVideo);
-      video.addEventListener('click', togglePlayPause);
-      playPauseBtn.addEventListener('click', togglePlayPause);
-      progressBar.addEventListener('click', seekVideo);
-      volumeBtn.addEventListener('click', toggleVolume);
-      fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-      video.addEventListener('timeupdate', updateProgress);
-      video.addEventListener('play', () => { updatePlayPauseIcon(); updateVolumeIcon(); });
-      video.addEventListener('pause', updatePlayPauseIcon);
-      video.addEventListener('volumechange', updateVolumeIcon);
-
-      // Initialize
-      updatePlayPauseIcon();
-      updateVolumeIcon();
     };
 
-    document.addEventListener("DOMContentLoaded", setupVideo);
+    // Events
+    playButton.addEventListener('click', playVideo);
+    videoOverlay.addEventListener('click', playVideo);
+    video.addEventListener('click', togglePlayPause);
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    progressBar.addEventListener('click', seekVideo);
+    volumeBtn.addEventListener('click', toggleVolume);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    video.addEventListener('timeupdate', updateProgress);
+    video.addEventListener('play', () => { updatePlayPauseIcon(); updateVolumeIcon(); });
+    video.addEventListener('pause', updatePlayPauseIcon);
+    video.addEventListener('volumechange', updateVolumeIcon);
+
+    // Initialize
+    updatePlayPauseIcon();
+    updateVolumeIcon();
+};
+
+document.addEventListener("DOMContentLoaded", setupVideo);
 //end Video
 
 
@@ -121,22 +121,22 @@ const setupTeamCarousel = () => {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     const teamMembers = document.querySelectorAll('.team-member');
-    
+
     if (!carousel || teamMembers.length === 0) return;
-    
+
     const memberWidth = teamMembers[0].offsetWidth + 30;
-    
+
     prevBtn.addEventListener('click', () => {
         carousel.scrollBy({
             left: -memberWidth,
             behavior: 'smooth'
         });
     });
-    
+
     nextBtn.addEventListener('click', () => {
         const currentScroll = carousel.scrollLeft;
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        
+
         if (currentScroll >= maxScroll - 10) {
             // العودة للبداية
             carousel.scrollTo({
@@ -159,22 +159,22 @@ const setupDevTeamCarousel = () => {
     const prevBtn = document.querySelector('.dev-prev-btn');
     const nextBtn = document.querySelector('.dev-next-btn');
     const devMembers = document.querySelectorAll('.dev-member');
-    
+
     if (!carousel || devMembers.length === 0) return;
-    
+
     const memberWidth = devMembers[0].offsetWidth + 30;
-    
+
     prevBtn.addEventListener('click', () => {
         carousel.scrollBy({
             left: -memberWidth,
             behavior: 'smooth'
         });
     });
-    
+
     nextBtn.addEventListener('click', () => {
         const currentScroll = carousel.scrollLeft;
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        
+
         if (currentScroll >= maxScroll - 10) {
             // العودة للبداية
             carousel.scrollTo({
@@ -202,29 +202,29 @@ const createInitialsImage = (name, size = 300) => {
             .toUpperCase()
             .substring(0, 2); // أخذ أول حرفين فقط
     };
-    
+
     const initials = getInitials(name);
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
-    
+
     // خلفية متدرجة جميلة
     const gradient = ctx.createLinearGradient(0, 0, size, size);
     gradient.addColorStop(0, '#31b2cc');
     gradient.addColorStop(1, '#31b2cc');
-    
+
     // رسم الخلفية
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, size, size);
-    
+
     // نص الأحرف الأولى
     ctx.fillStyle = '#ffffff';
-    ctx.font = `bold ${size/3}px Poppins, Arial, sans-serif`;
+    ctx.font = `bold ${size / 3}px Poppins, Arial, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(initials, size/2, size/2);
-    
+    ctx.fillText(initials, size / 2, size / 2);
+
     return canvas.toDataURL();
 };
 
@@ -233,13 +233,13 @@ const setupModal = () => {
     const modal = document.getElementById('teamModal');
     const closeBtn = document.querySelector('.close-btn');
     const teamMembers = document.querySelectorAll('.team-member');
-    
+
     // Team member data
     const teamData = [
         {
             name: 'Mohammad Swilem',
             role: 'President',
-    bio: `The President of the association stands at the forefront of leadership, guiding the team with vision and dedication. 
+            bio: `The President of the association stands at the forefront of leadership, guiding the team with vision and dedication. 
     As the key decision-maker, they steer the organization towards its goals, ensuring that every effort aligns with the association's mission.
      Behind every successful initiative, the President provides direction, inspiration, and strategic oversight, 
      shaping the path for continued growth and impact. Their leadership not only drives progress but also unites the team, 
@@ -259,7 +259,7 @@ const setupModal = () => {
         {
             name: 'Mohammad Daraghmeh',
             role: 'Vice President',
-    bio: `The Vice President plays a vital role in balancing strong leadership with active listening. Working closely with the President, 
+            bio: `The Vice President plays a vital role in balancing strong leadership with active listening. Working closely with the President, 
     they support the organization's vision, ensure continuity in the President's absence, and contribute to effective decision-making and teamwork that drive the association's success.
     Key Responsibilities:
 • Financial & Administrative Oversight
@@ -267,7 +267,7 @@ const setupModal = () => {
 • Branch Strategy Development
 • Administrative Coordination
 • Executive Liaison & Collaboration
-`,           
+`,
             email: 'mohammadjamaldaraghmeh@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:mohammadjamaldaraghmeh@gmail.com' }
@@ -283,7 +283,7 @@ const setupModal = () => {
 • Event Planning
 • Activity Coordination  
 • Logistics Management
-• Program Developmentt`, 
+• Program Developmentt`,
             email: 'mosabalhaddad18@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:m.haddad@ain.org' }
@@ -347,7 +347,7 @@ const setupModal = () => {
         Key Responsibilities:
 • Website Design & Development
 • Technical Maintenance & Issue Resolution
-• Digital Systems & Platform Management`,            
+• Digital Systems & Platform Management`,
             email: 'talaalhendiuni4@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:talaalhendiuni4@gmail.com' }
@@ -362,7 +362,7 @@ const setupModal = () => {
         Key Responsibilities:
 • Website Design & Development
 • Technical Maintenance & Issue Resolution
-• Digital Systems & Platform Management`,            
+• Digital Systems & Platform Management`,
             email: 'g.safw2018@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:g.safw2018@gmail.com' }
@@ -378,8 +378,8 @@ const setupModal = () => {
 • Member Engagement & Motivation
 • Membership Growth & Development
 • Activity Coordination & Quality Assurance
-• Member Support & Feedback Management`,       
-      email: 'hamzasalam554@gmail.com',
+• Member Support & Feedback Management`,
+            email: 'hamzasalam554@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:h.abdulsalam@ain.org' }
             ]
@@ -395,7 +395,7 @@ const setupModal = () => {
 • Event Photography
 • Video Production
 • Media Documentation
-• Creative Editing`, 
+• Creative Editing`,
             email: 'shadisalam205@gmail.com',
             social: [
                 { platform: 'envelope', url: 'mailto:s.salous@ain.org' }
@@ -438,20 +438,20 @@ const setupModal = () => {
     // Function to format bio content
     const formatBio = (bio) => {
         const bioLines = bio.split('\n').map(line => line.trim()).filter(line => line);
-        
+
         // Check if bio has "Key Responsibilities:" section
-        const responsibilitiesIndex = bioLines.findIndex(line => 
-            line.toLowerCase().includes('key responsibilities') || 
+        const responsibilitiesIndex = bioLines.findIndex(line =>
+            line.toLowerCase().includes('key responsibilities') ||
             line.toLowerCase().includes('responsibilities:')
         );
-        
+
         let description = '';
         let responsibilities = [];
-        
+
         if (responsibilitiesIndex !== -1) {
             // Extract description (everything before "Key Responsibilities:")
             description = bioLines.slice(0, responsibilitiesIndex).join(' ');
-            
+
             // Extract responsibilities (everything after "Key Responsibilities:")
             const responsibilitiesLines = bioLines.slice(responsibilitiesIndex + 1);
             responsibilities = responsibilitiesLines
@@ -462,14 +462,14 @@ const setupModal = () => {
             // If no "Key Responsibilities:" section, use entire bio as description
             description = bioLines.join(' ');
         }
-        
+
         // Build HTML
         let html = '';
-        
+
         if (description) {
             html += `<p class="about-description">${description}</p>`;
         }
-        
+
         if (responsibilities.length > 0) {
             html += '<h4 class="responsibilities-title">Key Responsibilities:</h4>';
             html += '<ul class="responsibilities-list">';
@@ -478,7 +478,7 @@ const setupModal = () => {
             });
             html += '</ul>';
         }
-        
+
         return html;
     };
 
@@ -486,21 +486,21 @@ const setupModal = () => {
     teamMembers.forEach((member, index) => {
         member.addEventListener('click', () => {
             const memberData = teamData[index];
-            
+
             // Set modal content
             document.getElementById('modalName').textContent = memberData.name;
             document.getElementById('modalRole').textContent = memberData.role;
             document.getElementById('modalBio').innerHTML = formatBio(memberData.bio);
             document.getElementById('modalEmail').textContent = memberData.email || '';
-            
+
             // Set modal image
             const modalImage = document.getElementById('modalImage');
             const memberImage = member.querySelector('img');
             modalImage.src = memberImage.src;
             modalImage.alt = memberData.name;
-            
 
-            
+
+
             // Show modal
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -543,20 +543,20 @@ const setupModal = () => {
                     if (devTeamSection) {
                         devTeamSection.style.display = 'none';
                     }
-                    
+
                     // Calculate the position accounting for fixed header
                     const headerHeight = 100;
                     const teamSection = document.querySelector('.team');
                     if (teamSection) {
                         const teamSectionTop = teamSection.getBoundingClientRect().top + window.pageYOffset;
                         const offsetPosition = teamSectionTop - headerHeight - 20;
-                        
+
                         // Scroll to the team section first
                         window.scrollTo({
                             top: offsetPosition,
                             behavior: 'smooth'
                         });
-                        
+
                         // Then scroll the carousel to show the member
                         setTimeout(() => {
                             const teamCarousel = memberElement.closest('.team-carousel');
@@ -566,7 +566,7 @@ const setupModal = () => {
                                 const scrollPosition = memberIndex * memberWidth;
                                 teamCarousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
                             }
-                            
+
                             // Add highlight effect after scroll
                             setTimeout(() => {
                                 memberElement.style.transition = 'box-shadow 0.3s ease, transform 0.3s ease';
@@ -583,10 +583,10 @@ const setupModal = () => {
             }
         }
     }
-    
+
     // Run on page load
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setTimeout(scrollToMember, 300);
         });
     } else {
@@ -607,7 +607,7 @@ function scrollToTop() {
 const initializePage = () => {
     // إعداد الفيديو
     setupVideo();
-    
+
     // تهيئة الصور التوضيحية للفريق
     const teamImages = document.querySelectorAll('.team-member img');
     const teamData = {
@@ -621,19 +621,19 @@ const initializePage = () => {
         7: { name: 'Ghaida Saify', image: 'GhaidaSaify.jpg' },
         8: { name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
         9: { name: 'Shadi Salous', image: 'ShadiSalous.jpg' },
-       10: { name: 'Meera Sorady', image: 'Meera Sorady.jpg' },
-       11: { name: 'Teeba Qusai', image: 'TeebaQusai.jpg' }
-        
+        10: { name: 'Meera Sorady', image: 'Meera Sorady.jpg' },
+        11: { name: 'Teeba Qusai', image: 'TeebaQusai.jpg' }
+
     };
 
     teamImages.forEach((img, index) => {
         const member = teamData[index];
-        
+
         if (member && member.image) {
             img.src = `image/${member.image}`;
             img.alt = member.name;
-            
-            img.onerror = function() {
+
+            img.onerror = function () {
                 // إذا فشل تحميل الصورة، أنشئ صورة بالأحرف الأولى
                 this.src = createInitialsImage(member.name, 300);
                 console.log(`Using initials image for ${member.name}`);
@@ -650,21 +650,22 @@ const initializePage = () => {
     const devImages = document.querySelectorAll('.dev-card-front img');
     const devTeamData = {
         0: { name: 'Tala Alhendi', image: 'TalaAlhendi.jpg' },
-        1: { name: 'Ghaida Saify', image: 'GhaidaSaify.jpg' },
+        1: { name: 'Ghaydaa Saify', image: 'GhaidaSaify.jpg' },
         2: { name: 'Andreh Khouri', image: 'Andreh.jpg' },
         3: { name: 'Dana Zaben', image: 'dana.jpg' },
         4: { name: 'Sadeel Daraghmeh', image: 'SadeelDaraghmeh.jpg' },
-        5: { name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' }
+        5: { name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
+        6: { name: 'Asmaa Abd Alhadi', image: 'AsmaaAbdAlhadi.jpg' }
     };
 
     devImages.forEach((img, index) => {
         const member = devTeamData[index];
-        
+
         if (member && member.image) {
             img.src = `image/${member.image}`;
             img.alt = member.name;
-            
-            img.onerror = function() {
+
+            img.onerror = function () {
                 // إذا فشل تحميل الصورة، أنشئ صورة بالأحرف الأولى
                 this.src = createInitialsImage(member.name, 300);
                 console.log(`Using initials image for ${member.name}`);
@@ -684,50 +685,50 @@ const initializePage = () => {
         'image/Exhibition.jpg',
         'image/Hackathon.jpg'
     ];
-    
+
     galleryImages.forEach((img, index) => {
         if (galleryImageUrls[index]) {
             img.src = galleryImageUrls[index];
             img.alt = `Gallery Image ${index + 1}`;
-            
-            img.onerror = function() {
+
+            img.onerror = function () {
                 this.src = 'https://via.placeholder.com/500x300/02B6ED/ffffff?text=AIN+Project';
             };
         }
     });
-    
+
     // إضافة تأثيرات إضافية للبطاقات
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
             item.style.transform = 'translateY(-15px) scale(1.02)';
             item.style.boxShadow = '0 20px 40px rgba(2, 182, 237, 0.25)';
         });
-        
+
         item.addEventListener('mouseleave', () => {
             item.style.transform = 'translateY(0) scale(1)';
             item.style.boxShadow = '0 8px 20px rgba(2, 182, 237, 0.15)';
         });
     });
-    
+
     // إضافة تأثيرات للبطاقات (بدون تدوير)
     document.querySelectorAll('.team-member').forEach(member => {
         member.addEventListener('mouseenter', () => {
             member.style.transform = 'scale(1.03)';
             member.style.transition = 'transform 0.3s ease';
         });
-        
+
         member.addEventListener('mouseleave', () => {
             member.style.transform = 'scale(1)';
         });
     });
-    
+
     // إضافة تأثيرات لفريق التطوير (بدون تدوير)
     document.querySelectorAll('.dev-member').forEach(member => {
         member.addEventListener('mouseenter', () => {
             member.style.transform = 'scale(1.03)';
             member.style.transition = 'transform 0.3s ease';
         });
-        
+
         member.addEventListener('mouseleave', () => {
             member.style.transform = 'scale(1)';
         });
@@ -738,19 +739,19 @@ const initializePage = () => {
 document.addEventListener('DOMContentLoaded', () => {
     // تأثيرات الظهور
     fadeInOnScroll();
-    
+
     // إعداد الفيديو
     setupVideo();
-    
+
     // إعداد الكاروسيل لفريق الهوية
     setupTeamCarousel();
-    
+
     // إعداد الكاروسيل لفريق التطوير
     setupDevTeamCarousel();
-    
+
     // إعداد المودال
     setupModal();
-    
+
     // تهيئة الصور والتأثيرات
     initializePage();
 });
