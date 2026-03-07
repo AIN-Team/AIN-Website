@@ -652,11 +652,12 @@ const initializePage = () => {
         0: { name: 'Tala Alhendi', image: 'TalaAlhendi.jpg' },
         1: { name: 'Ghaydaa Saify', image: 'GhaidaSaify.jpg' },
         2: { name: 'Andreh Khouri', image: 'Andreh.jpg' },
-        3: { name: 'Dana Zaben', image: 'dana.jpg' },
-        4: { name: 'Sadeel Daraghmeh', image: 'SadeelDaraghmeh.jpg' },
-        5: { name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
-        6: { name: 'Asmaa Abd Alhadi', image: 'AsmaaAbdAlhadi.jpg' },
-        7: { name: 'Jana Abu Turabi', image: 'JanaAbuturabi.jpg' }
+        3: { name: 'Jana Abu Turabi', image: 'JanaAbuturabi.jpg' },
+        4: { name: 'Dana Zaben', image: 'dana.jpg' },
+        5: { name: 'Sadeel Daraghmeh', image: 'SadeelDaraghmeh.jpg' },
+        6:{ name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
+        7: { name: 'Asmaa Abd Alhadi', image: 'AsmaaAbdAlhadi.jpg' }
+       
     };
 
     devImages.forEach((img, index) => {
