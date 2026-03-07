@@ -160,9 +160,9 @@ This website was designed and developed by the **AIN IT Committee** at An-Najah 
 | 2 | **Ghaydaa Saify** | 🗂️ Project Manager & Backend Developer | [LinkedIn](https://www.linkedin.com/in/ghayda-saify) | [GitHub](https://github.com/Ghayda-Saify) |
 | 3 | **Asmaa Abd Alhadi** | 🎨 UI/UX Designer | [LinkedIn](https://www.linkedin.com/in/asmaa-abdalhadi-3bbb28268/) | — |
 | 4 | **Andreh Khouri** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/andreh-khouri-375965351) | [GitHub](https://github.com/andrehkhouri333) |
-| 5 | **Sadeel Daraghmeh** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/sadeel-abuhelweh-152788307) | [GitHub](https://github.com/SadeelDaraghmeh) |
-| 6 | **Jana Abu Turabi** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/jana-abuturabi-026a94338/) | [GitHub](https://github.com/JanaAbuTurabi) |
-| 7 | **Dana Zaben** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/dana-zaben-3b5489284) | [GitHub](https://github.com/Dana-rami) |
+| 5 | **Jana Abu Turabi** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/jana-abuturabi-026a94338/) | [GitHub](https://github.com/JanaAbuTurabi) |
+| 6 | **Dana Zaben** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/dana-zaben-3b5489284) | [GitHub](https://github.com/Dana-rami) |
+| 7 | **Sadeel Daraghmeh** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/sadeel-abuhelweh-152788307) | [GitHub](https://github.com/SadeelDaraghmeh) |
 | 8 | **Hamza Abdulsalam** | 💻 Frontend Developer | [LinkedIn](https://www.linkedin.com/in/hamza-abdulsalamm) | [GitHub](https://github.com/HamzaAbdulSalam) |
 
 ---
