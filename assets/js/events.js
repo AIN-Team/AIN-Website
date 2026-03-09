@@ -18,7 +18,7 @@ const EVENTS = [
     description: 'The flagship hackathon — 48 hours of ideas, code, and breakthrough innovation.',
     fullDescription: 'Join teams of passionate students for a 48-hour sprint of building, prototyping, and pitching ideas that matter. Mentored by industry experts, judged by innovators, and witnessed by the entire AIN community.',
     images: [
-      '/images/'
+      '/images/Hackathon1.jpg'
     ],
     registrationLink: '/hack.html',
     tags: ['Tech', 'Innovation', 'Competition'],
@@ -30,9 +30,25 @@ const EVENTS = [
     titleAr: 'عينك على ذاتك',
     date: '2026-01-15',
     location: 'City Hub, Nablus',
-    status: 'upcoming',
+    status: 'past',
     description: 'An immersive self-development camp to unlock your inner potential.',
-    fullDescription: 'Three days of workshops, challenges, and reflection designed to inspire clarity of purpose and creative thinking in every participant.',
+    fullDescription: `أقامت الهيئة العاشرة للشبكة العربية للابتكار ممثلةً بفرعها الطلابي في جامعة النجاح الوطنية مخيم "عينك على ذاتك 4"،
+    
+    والذي شكّل محطة استثنائية في مسيرة العمل الطلابي الريادي والإبداعي، حيث اجتمعت الطاقات الشابة في تجربة علمية متكاملة امتدت على مدار ثلاثة أيام حافلة بالعطاء والإنجاز.
+    \n
+    \nوقد جاء استضافة هذا المخيم برعاية وتعاون كريم من المجلس الأعلى للشباب والرياضة الفلسطيني، من خلال توفيرهم المكان الذي أُقيمت فيه فعاليات المخيم، وهو مدينة الأمل الشبابية الرياضية، مما أسهم في توفير بيئة مثالية وملهمة احتضنت الطاقات الشبابية وأتاحت لهم مساحة متكاملة للإبداع والعمل والتفاعل.\n
+    \nشهد المخيم انطلاقة فعالياته منذ ساعات الفجر الأولى، واستمرت برامجه حتى منتصف الليل، في أجواء نابضة بالحيوية والحماس. وقد تنوعت الأنشطة ما بين ورش عمل علمية متخصصة، جلسات عصف ذهني، تدريبات ريادية، فعاليات ثقافية وترفيهية، وأنشطة اجتماعية هدفت إلى كسر الحواجز بين الطلبة وتعزيز روح الفريق والتعاون.\n
+    \nوكان الحدث الأبرز في المخيم هو الهاكاثون العلمي، الذي مثّل مساحة تنافسية إبداعية مكثفة، عمل خلالها الطلبة على تطوير أفكار ريادية مبتكرة تسعى إلى تقديم حلول عملية لتحديات واقعية.\n
+    \nوفي ختام الهاكاثون، تم الإعلان عن المشاريع الفائزة:
+    \n🥇 المركز الأول: Prizo
+    \n🥈 المركز الثاني: اسفلت
+    \n🥉 المركز الثالث: Parkeen\n
+    \nكما تخلل المخيم ثلاث جلسات نوعية حملت طابعًا تحفيزيًا وفكريًا عميقًا:
+    \n• المهندس غالي شهاب — التحفيز في بناء المشاريع
+    \n• الأستاذة صبحية مسلم — التفكير وآلياته
+    \n• المهندس محمد سويلم — سلبيات وإيجابيات الرسائل الضمنية وأثرها على المجتمعات
+    \n
+    \nوقد عبّر الطلبة المشاركون عن إعجابهم الكبير بالمخيم، مؤكدين أن التجربة كانت مفعمة بالإيجابية، وغنية بالمعرفة، وذات أثر عميق على المستوى الشخصي والأكاديمي.`,
     images: [
       '/images/CAMP1.jpg',
       '/images/CAMP2.jpg',
@@ -328,7 +344,9 @@ function EventDetailModal({ event, onClose }) {
             </div>
 
             <div className="evp-modal__desc">
-              <p className="evp-modal__full-desc">{event.fullDescription || event.description}</p>
+              {(event.fullDescription || event.description).split('\n').filter(Boolean).map((para, i) => (
+  <p key={i} className="evp-modal__full-desc">{para}</p>
+))}
               {event.extraDescription && (
                 <p className="evp-modal__extra-desc">{event.extraDescription}</p>
               )}
