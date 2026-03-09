@@ -432,6 +432,21 @@ const setupModal = () => {
             social: [
                 { platform: 'envelope', url: 'mailto:t.qusai@ain.org' }
             ]
+        },
+        {
+            name: 'Dia arar',
+            role: 'Technical Solutions Chair',
+            bio: `In today's digital world, having a Solutions Architect means that every technical challenge has a smart and seamless solution!
+                 This person is the mastermind behind optimizing processes, developing systems, and ensuring that technology effectively serves our goals.
+                 Whether it's about speeding up workflows or delivering an exceptional experience to the audience.
+        Key Responsibilities:
+• Website Design & Development
+• Technical Maintenance & Issue Resolution
+• Digital Systems & Platform Management`,
+            email: 'diaararx@gmail.com',
+            social: [
+                { platform: 'envelope', url: 'mailto:g.safw2018@gmail.com' }
+            ]
         }
     ];
 
@@ -622,7 +637,8 @@ const initializePage = () => {
         8: { name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
         9: { name: 'Shadi Salous', image: 'ShadiSalous.jpg' },
         10: { name: 'Meera Sorady', image: 'Meera Sorady.jpg' },
-        11: { name: 'Teeba Qusai', image: 'TeebaQusai.jpg' }
+        11: { name: 'Teeba Qusai', image: 'TeebaQusai.jpg' },
+        12: { name: 'Dia Arar', image: 'DiaArar.jpg' }
 
     };
 
