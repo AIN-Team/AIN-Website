@@ -50,9 +50,9 @@ const EVENTS = [
     \n
     \nوقد عبّر الطلبة المشاركون عن إعجابهم الكبير بالمخيم، مؤكدين أن التجربة كانت مفعمة بالإيجابية، وغنية بالمعرفة، وذات أثر عميق على المستوى الشخصي والأكاديمي.`,
     images: [
-      '/images/CAMP1.jpg',
-      '/images/CAMP2.jpg',
-      '/images/CAMP3.jpg',
+      '/images/CAMP201.jpg',
+      '/images/CAMP202.jpg',
+      '/images/CAMP203.jpg',
     ],
     registrationLink: '/aincamp.html',
     tags: ['Self-Development', 'Leadership'],
