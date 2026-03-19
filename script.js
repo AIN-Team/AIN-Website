@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startAnimation();
 });
+
 // دالة تفعيل حركات الظهور عند السكرول
 function initScrollReveal() {
     const observerOptions = {
@@ -301,3 +302,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     adjustTeamForMobile();
 });
+
+
+// ===== HEADER HIDE ON SCROLL DOWN =====
+/*
+const header = document.querySelector(".site-header");
+let lastScroll = 0;
+
+function handleHeaderScroll() {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 80) {
+    header.style.transform = "translateY(-100%)";
+  } else {
+    header.style.transform = "translateY(0)";
+  }
+
+  lastScroll = currentScroll;
+}
+
+window.addEventListener("scroll", handleHeaderScroll);
+document.addEventListener("scroll", handleHeaderScroll);
+*/

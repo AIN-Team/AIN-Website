@@ -48,7 +48,8 @@ document.getElementById("site-footer").innerHTML = `
       <a href="/" class="logo" aria-label="Arab Innovation Network home">
         <img src="/image/AINLogo-2.png" alt="AIN" />
       </a>
-      <p>Arab Innovation Network</p>
+      <p>Arab Innovation Network<br>
+        An-Najah National University Student Society</p>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">

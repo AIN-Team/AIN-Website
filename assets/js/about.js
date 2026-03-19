@@ -576,10 +576,11 @@ const setupModal = () => {
                         setTimeout(() => {
                             const teamCarousel = memberElement.closest('.team-carousel');
                             if (teamCarousel) {
-                                const memberIndex = parseInt(memberId, 10);
-                                const memberWidth = 320 + 30; // width + margin
-                                const scrollPosition = memberIndex * memberWidth;
-                                teamCarousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                              memberElement.scrollIntoView({
+                             behavior: "smooth",
+                             inline: "center",
+                             block: "nearest"
+                            });
                             }
 
                             // Add highlight effect after scroll
@@ -665,14 +666,15 @@ const initializePage = () => {
     // إضافة الصور لفريق التطوير
     const devImages = document.querySelectorAll('.dev-card-front img');
     const devTeamData = {
-        0: { name: 'Tala Alhendi', image: 'TalaAlhendi.jpg' },
-        1: { name: 'Ghaydaa Saify', image: 'GhaidaSaify.jpg' },
-        2: { name: 'Andreh Khouri', image: 'Andreh.jpg' },
-        3: { name: 'Jana Abu Turabi', image: 'JanaAbuturabi.jpg' },
-        4: { name: 'Dana Zaben', image: 'dana.jpg' },
-        5: { name: 'Sadeel Daraghmeh', image: 'SadeelDaraghmeh.jpg' },
-        6:{ name: 'Hamza Abdulsalam', image: 'HamzaAbdulsalam.jpg' },
-        7: { name: 'Asmaa Abd Alhadi', image: 'AsmaaAbdAlhadi.jpg' }
+    0: { name: 'Tala Alhendi',       image: 'TalaAlhendi.jpg' },
+    1: { name: 'Ghaydaa Saify',      image: 'GhaidaSaify.jpg' },
+    2: { name: 'Dia Arar',           image: 'DiaArar.jpg' },      
+    3: { name: 'Andreh Khouri',      image: 'Andreh.jpg' },
+    4: { name: 'Jana Abu Turabi',    image: 'JanaAbuturabi.jpg' },
+    5: { name: 'Dana Zaben',         image: 'dana.jpg' },
+    6: { name: 'Sadeel Daraghmeh',   image: 'SadeelDaraghmeh.jpg' },
+    7: { name: 'Hamza Abdulsalam',   image: 'HamzaAbdulsalam.jpg' },
+    8: { name: 'Asmaa Abd Alhadi',   image: 'AsmaaAbdAlhadi.jpg' }
        
     };
 
@@ -752,6 +754,7 @@ const initializePage = () => {
         });
     });
 };
+
 
 // Update the DOMContentLoaded event to include video setup
 document.addEventListener('DOMContentLoaded', () => {
