@@ -668,13 +668,14 @@ const initializePage = () => {
     const devTeamData = {
     0: { name: 'Tala Alhendi',       image: 'TalaAlhendi.jpg' },
     1: { name: 'Ghaydaa Saify',      image: 'GhaidaSaify.jpg' },
-    2: { name: 'Dia Arar',           image: 'DiaArar.jpg' },      
-    3: { name: 'Andreh Khouri',      image: 'Andreh.jpg' },
-    4: { name: 'Jana Abu Turabi',    image: 'JanaAbuturabi.jpg' },
-    5: { name: 'Dana Zaben',         image: 'dana.jpg' },
-    6: { name: 'Sadeel Daraghmeh',   image: 'SadeelDaraghmeh.jpg' },
-    7: { name: 'Hamza Abdulsalam',   image: 'HamzaAbdulsalam.jpg' },
-    8: { name: 'Asmaa Abd Alhadi',   image: 'AsmaaAbdAlhadi.jpg' }
+    2: { name: 'Dia Arar',           image: 'DiaArar.jpg' },
+    3: { name: 'Sadeel Daraghmeh',   image: 'SadeelDaraghmeh.jpg' },
+    4: { name: 'Hamza Abdulsalam',   image: 'HamzaAbdulsalam.jpg' },
+    5: { name: 'Asmaa Abd Alhadi',   image: 'AsmaaAbdAlhadi.jpg' },      
+    6: { name: 'Andreh Khouri',      image: 'Andreh.jpg' },
+    7: { name: 'Jana Abu Turabi',    image: 'JanaAbuturabi.jpg' },
+    8: { name: 'Dana Zaben',         image: 'dana.jpg' }
+    
        
     };
 
