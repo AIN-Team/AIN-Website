@@ -112,30 +112,31 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
 });
 
-// ===== TEAM SECTION CAROUSEL =====
+// ===== TEAM SECTION CAROUSEL — infinite seamless scroll =====
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.team-track');
-    const prevBtn = document.getElementById('prevTeam');
-    const nextBtn = document.getElementById('nextTeam');
+    if (!track) return;
 
-    if (!track || !prevBtn || !nextBtn) {
-        return;
-    }
+    const members = Array.from(track.querySelectorAll('.team-member'));
+    if (members.length === 0) return;
 
-    const singleItem = track.querySelector('.team-member');
-    if (!singleItem) return;
-
-    const itemWidth = singleItem.offsetWidth + 10;
-    const itemsPerScroll = 3;
-    const scrollAmount = itemWidth * itemsPerScroll;
-
-    prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    // Clone all cards and append for seamless loop
+    members.forEach(member => {
+        const clone = member.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
     });
 
-    nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
+    const speed = 0.5;
+
+    const tick = () => {
+        track.scrollLeft += speed;
+        if (track.scrollLeft >= track.scrollWidth / 2) {
+            track.scrollLeft -= track.scrollWidth / 2;
+        }
+        requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
 });
 
 // ===== QUESTIONS ACCORDION =====

@@ -115,42 +115,52 @@ document.addEventListener("DOMContentLoaded", setupVideo);
 //end Video
 
 
-// كاروسيل فريق العمل مع خاصية العودة للبداية
-const setupTeamCarousel = () => {
+// Clone all team cards for seamless infinite loop (must run after images are set)
+const cloneTeamCards = () => {
     const carousel = document.querySelector('.team-carousel');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
     const teamMembers = document.querySelectorAll('.team-member');
-
     if (!carousel || teamMembers.length === 0) return;
-
-    const memberWidth = teamMembers[0].offsetWidth + 30;
-
-    prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-            left: -memberWidth,
-            behavior: 'smooth'
-        });
+    teamMembers.forEach(member => {
+        const clone = member.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        carousel.appendChild(clone);
     });
+};
 
-    nextBtn.addEventListener('click', () => {
-        const currentScroll = carousel.scrollLeft;
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+// Continuous smooth infinite scroll — same technique as home page
+const startTeamCarousel = () => {
+    const carousel = document.querySelector('.team-carousel');
+    const prevBtn  = document.querySelector('.prev-btn');
+    const nextBtn  = document.querySelector('.next-btn');
+    if (!carousel) return;
 
-        if (currentScroll >= maxScroll - 10) {
-            // العودة للبداية
-            carousel.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            });
-        } else {
-            // التمرير العادي
-            carousel.scrollBy({
-                left: memberWidth,
-                behavior: 'smooth'
-            });
+    const firstCard = carousel.querySelector('.team-member');
+    if (!firstCard) return;
+
+    const getCardWidth = () => firstCard.offsetWidth + 30;
+
+    const slide = (numCards) => {
+        const half = carousel.scrollWidth / 2;
+        let target = carousel.scrollLeft + getCardWidth() * numCards;
+
+        // Instant invisible wrap — must happen before the smooth scroll starts
+        if (target >= half) {
+            carousel.scrollLeft -= half;  // direct assignment = no animation, no visual jump
+            target -= half;
+        } else if (target < 0) {
+            carousel.scrollLeft += half;
+            target += half;
         }
-    });
+
+        // Now animate forward to the target
+        carousel.scrollTo({ left: target, behavior: 'smooth' });
+    };
+
+    // Auto-slide 2 cards every 2 seconds, always forward
+    setInterval(() => slide(2), 2000);
+
+    if (nextBtn) nextBtn.addEventListener('click', () => slide(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => slide(-1));
 };
 
 // كاروسيل فريق التطوير مع خاصية العودة للبداية
@@ -668,15 +678,13 @@ const initializePage = () => {
     const devTeamData = {
     0: { name: 'Tala Alhendi',       image: 'TalaAlhendi.jpg' },
     1: { name: 'Ghaydaa Saify',      image: 'GhaidaSaify.jpg' },
-    2: { name: 'Dia Arar',           image: 'DiaArar.jpg' },
-    3: { name: 'Sadeel Daraghmeh',   image: 'SadeelDaraghmeh.jpg' },
-    4: { name: 'Hamza Abdulsalam',   image: 'HamzaAbdulsalam.jpg' },
-    5: { name: 'Asmaa Abd Alhadi',   image: 'AsmaaAbdAlhadi.jpg' },      
-    6: { name: 'Andreh Khouri',      image: 'Andreh.jpg' },
-    7: { name: 'Jana Abu Turabi',    image: 'JanaAbuturabi.jpg' },
-    8: { name: 'Dana Zaben',         image: 'dana.jpg' }
-    
-       
+    2: { name: 'Jana Abu Turabi',    image: 'JanaAbuturabi.jpg' },
+    3: { name: 'Andreh Khouri',      image: 'Andreh.jpg' },
+    4: { name: 'Dana Zaben',         image: 'dana.jpg' },
+    5: { name: 'Sadeel Daraghmeh',   image: 'SadeelDaraghmeh.jpg' },
+    6: { name: 'Hamza Abdulsalam',   image: 'HamzaAbdulsalam.jpg' },
+    7: { name: 'Asmaa Abd Alhadi',   image: 'AsmaaAbdAlhadi.jpg' },
+    8: { name: 'Dia Arar',           image: 'DiaArar.jpg' }
     };
 
     devImages.forEach((img, index) => {
@@ -759,21 +767,11 @@ const initializePage = () => {
 
 // Update the DOMContentLoaded event to include video setup
 document.addEventListener('DOMContentLoaded', () => {
-    // تأثيرات الظهور
     fadeInOnScroll();
-
-    // إعداد الفيديو
     setupVideo();
-
-    // إعداد الكاروسيل لفريق الهوية
-    setupTeamCarousel();
-
-    // إعداد الكاروسيل لفريق التطوير
     setupDevTeamCarousel();
-
-    // إعداد المودال
-    setupModal();
-
-    // تهيئة الصور والتأثيرات
-    initializePage();
+    setupModal();       // bind modal events to original cards only
+    initializePage();   // set images on original cards before cloning
+    cloneTeamCards();   // duplicate cards for seamless loop
+    startTeamCarousel(); // start infinite scroll
 });

@@ -396,7 +396,6 @@ body {
 .team-carousel {
     display: flex;
     overflow-x: auto;
-    scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 30px;
@@ -1180,11 +1179,6 @@ body {
 /* تحسينات إضافية */
 .team-carousel {
     scroll-padding: 0 20px;
-    scroll-snap-type: x mandatory;
-}
-
-.team-member {
-    scroll-snap-align: center;
 }
 
 .dev-team-carousel {
